@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51469515-66a0-4a72-b3e5-104d1ad04115" name="Changes" comment="" />
+    <list default="true" id="51469515-66a0-4a72-b3e5-104d1ad04115" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Main/BlackJack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Juego.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/BlackJack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Resources/J-R.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackJack.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/BlackJack.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackJack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/J-R.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Enzologico2425/BlackJackEnzo.git",
-    "accountId": "9dde5bfb-bef1-4db0-b042-24f571488618"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Enzologico2425&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Enzologico2425/BlackJackEnzo.git&quot;,
+    &quot;accountId&quot;: &quot;9dde5bfb-bef1-4db0-b042-24f571488618&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -37,9 +55,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BlackjackGUI.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -51,6 +72,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\CEP-MATI\IdeaProjects\BlackJackEnzo\src\Main" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,7 +94,8 @@
       <option name="presentableId" value="Default" />
       <updated>1747387062329</updated>
       <workItem from="1747387063479" duration="2662000" />
-      <workItem from="1747636997073" duration="1274000" />
+      <workItem from="1747636997073" duration="3408000" />
+      <workItem from="1747640524252" duration="2365000" />
     </task>
     <servers />
   </component>
