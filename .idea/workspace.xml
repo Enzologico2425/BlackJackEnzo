@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51469515-66a0-4a72-b3e5-104d1ad04115" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Main/Carta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/BlackJack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/BlackJack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Juego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
@@ -88,7 +92,7 @@
       <updated>1747387062329</updated>
       <workItem from="1747387063479" duration="2662000" />
       <workItem from="1747636997073" duration="3408000" />
-      <workItem from="1747640524252" duration="6560000" />
+      <workItem from="1747640524252" duration="11387000" />
     </task>
     <servers />
   </component>
