@@ -8,12 +8,14 @@ public class Juego {
     private final ArrayList<Integer> jugador;
     private final ArrayList<Integer> crupier;
     private boolean jugadorPlantado;
+    private int puntos; // Contador de puntos
 
     public Juego() {
         cartas = new ArrayList<>();
         jugador = new ArrayList<>();
         crupier = new ArrayList<>();
         jugadorPlantado = false;
+        puntos = 0;
 
         for (int i = 1; i <= 10; i++) cartas.add(i);
         for (int i = 0; i < 3; i++) cartas.add(10);
@@ -36,12 +38,14 @@ public class Juego {
 
         if (suma == 21) {
             jugadorPlantado = true;
-            return "Tus cartas: " + jugador + " - ¡BLACKJACK! ¡Ganaste!";
+            puntos += 50;
+            return "Tus cartas: " + jugador + " - ¡BLACKJACK! ¡Ganaste! Puntos: " + puntos;
         }
 
         if (suma > 21) {
             jugadorPlantado = true;
-            return "Tus cartas: " + jugador + " - ¡Te pasaste! Has perdido.";
+            puntos -= 25;
+            return "Tus cartas: " + jugador + " - ¡Te pasaste! Has perdido. Puntos: " + puntos;
         }
 
         return "Tus cartas: " + jugador;
@@ -54,11 +58,24 @@ public class Juego {
         int sumaJugador = suma(jugador);
         int sumaCrupier = suma(crupier);
 
-        if (sumaJugador > 21) return "¡Te pasaste! Pierdes.";
-        if (sumaCrupier > 21) return "Crupier: " + crupier + " - ¡El crupier se pasó! ¡Ganaste!";
-        if (sumaJugador > sumaCrupier) return "¡Ganaste! Crupier: " + crupier;
-        if (sumaJugador < sumaCrupier) return "Crupier: " + crupier + " - Gana el crupier.";
-        return "Crupier: " + crupier + " - ¡Empate!";
+        if (sumaJugador > 21) {
+            puntos -= 25;
+            return "¡Te pasaste! Pierdes. Puntos: " + puntos;
+        }
+        if (sumaCrupier > 21) {
+            puntos += 50;
+            return "Crupier: " + crupier + " - ¡El crupier se pasó! ¡Ganaste! Puntos: " + puntos;
+        }
+        if (sumaJugador > sumaCrupier) {
+            puntos += 50;
+            return "¡Ganaste! Crupier: " + crupier + " Puntos: " + puntos;
+        }
+        if (sumaJugador < sumaCrupier) {
+            puntos -= 25;
+            return "Crupier: " + crupier + " - Gana el crupier. Puntos: " + puntos;
+        }
+
+        return "Crupier: " + crupier + " - ¡Empate! Puntos: " + puntos;
     }
 
     public String nuevaPartida() {
@@ -86,5 +103,9 @@ public class Juego {
 
     public List<Integer> getCrupier() {
         return new ArrayList<>(crupier);
+    }
+
+    public int getPuntos() {
+        return puntos;
     }
 }

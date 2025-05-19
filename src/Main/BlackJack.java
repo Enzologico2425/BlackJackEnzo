@@ -18,7 +18,7 @@ public class BlackJack extends JFrame {
         // Centrar la ventana
         setLocationRelativeTo(null);
 
-        // Panel central con fondo verde (tapete)
+        // Panel central con fondo verde
         JPanel fondo = new JPanel(new BorderLayout());
         fondo.setBackground(new Color(0, 100, 0)); // verde oscuro
         add(fondo, BorderLayout.CENTER);
@@ -79,9 +79,9 @@ public class BlackJack extends JFrame {
 
     }
     public void mostrarCartasCrupier(java.util.List<Integer> cartasCrupier) {
-        panelCartasCrupier.removeAll(); // Limpiar panel
+        panelCartasCrupier.removeAll();
 
-        // Convertir la lista de enteros en una cadena con formato [ 10, 5, 6 ]
+        //  formato [ 10, 5, 6 ]
         String textoCartas = cartasCrupier.toString()
                 .replace("[", "[ ")
                 .replace("]", " ]");
@@ -91,7 +91,7 @@ public class BlackJack extends JFrame {
         cartaLabel.setFont(new Font("Arial", Font.BOLD, 16));
         panelCartasCrupier.add(cartaLabel);
 
-        actualizar(); // Redibujar el panel
+        actualizar();
     }
     public void mostrarCartasJugador(java.util.List<Integer> cartasJugador) {
         panelCartasJugador.removeAll(); // Limpiar panel
@@ -101,7 +101,7 @@ public class BlackJack extends JFrame {
             cartaLabel.setFont(new Font("Arial", Font.BOLD, 0));
             panelCartasJugador.add(cartaLabel);
         }
-        actualizar(); // Redibujar el panel
+        actualizar();
     }
 
     // Getters

@@ -12,14 +12,15 @@ public class Main {
             String texto = juego.nuevaPartida();
             gui.setTextoJuego(texto);
             gui.mostrarCartasJugador(juego.getJugador());
-            gui.mostrarCartasCrupier(juego.getCrupier());  // ← muestra cartas iniciales del crupier
+            gui.mostrarCartasCrupier(juego.getCrupier());
+            gui.setPuntosJugador(juego.getPuntos()); // Mostrar puntos iniciales
 
             // Pedir carta
             gui.getPedirCartaBtn().addActionListener(e -> {
                 String resultado = juego.pedirCartaJugador();
                 gui.setTextoJuego(resultado);
                 gui.mostrarCartasJugador(juego.getJugador());
-                // El crupier no cambia aquí
+                gui.setPuntosJugador(juego.getPuntos()); // Actualizar puntos
             });
 
             // Plantarse
@@ -27,7 +28,8 @@ public class Main {
                 String resultado = juego.plantarse();
                 gui.setTextoJuego(resultado);
                 gui.mostrarCartasJugador(juego.getJugador());
-                gui.mostrarCartasCrupier(juego.getCrupier());  //  mostrar TODAS las cartas del crupier
+                gui.mostrarCartasCrupier(juego.getCrupier());
+                gui.setPuntosJugador(juego.getPuntos()); // Actualizar puntos
             });
 
             // Jugar de nuevo
@@ -35,7 +37,8 @@ public class Main {
                 String resultado = juego.nuevaPartida();
                 gui.setTextoJuego(resultado);
                 gui.mostrarCartasJugador(juego.getJugador());
-                gui.mostrarCartasCrupier(juego.getCrupier());  //  mostrar nueva mano
+                gui.mostrarCartasCrupier(juego.getCrupier());
+                gui.setPuntosJugador(juego.getPuntos()); // Reiniciar puntos
             });
         });
     }
