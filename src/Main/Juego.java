@@ -2,32 +2,46 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Juego {
-    private final ArrayList<Integer> cartas;
-    private final ArrayList<Integer> jugador;
-    private final ArrayList<Integer> crupier;
+    private final List<Carta> mazo;
+    private final List<Carta> jugador;
+    private final List<Carta> crupier;
     private boolean jugadorPlantado;
-    private int puntos; // Contador de puntos
+    private int puntos;
+
+    private static final String[] PALOS = {"H", "D", "C", "S"};
+    private static final String[] NOMBRES = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 
     public Juego() {
-        cartas = new ArrayList<>();
+        mazo = new ArrayList<>();
         jugador = new ArrayList<>();
         crupier = new ArrayList<>();
         jugadorPlantado = false;
         puntos = 0;
-
-        for (int i = 1; i <= 10; i++) cartas.add(i);
-        for (int i = 0; i < 3; i++) cartas.add(10);
-
-        jugador.add(cartaAleatoria());
-        jugador.add(cartaAleatoria());
-        crupier.add(cartaAleatoria());
-        crupier.add(cartaAleatoria());
+        crearMazo();
+        repartirCartasIniciales();
     }
 
-    public int cartaAleatoria() {
-        return cartas.get((int) (Math.random() * cartas.size()));
+    private void crearMazo() {
+        for (String palo : PALOS) {
+            for (String nombre : NOMBRES) {
+                mazo.add(new Carta(nombre, palo));
+            }
+        }
+    }
+
+    private Carta cartaAleatoria() {
+        Random rand = new Random();
+        return mazo.get(rand.nextInt(mazo.size()));
+    }
+
+    private void repartirCartasIniciales() {
+        jugador.add(cartaAleatoria());
+        jugador.add(cartaAleatoria());
+        crupier.add(cartaAleatoria());
+        crupier.add(cartaAleatoria());
     }
 
     public String pedirCartaJugador() {
@@ -39,16 +53,16 @@ public class Juego {
         if (suma == 21) {
             jugadorPlantado = true;
             puntos += 50;
-            return "Tus cartas: " + jugador + " - ¡BLACKJACK! ¡Ganaste! Puntos: " + puntos;
+            return "BLACKJACK! ¡Ganaste! Puntos: " + puntos;
         }
 
         if (suma > 21) {
             jugadorPlantado = true;
             puntos -= 25;
-            return "Tus cartas: " + jugador + " - ¡Te pasaste! Has perdido. Puntos: " + puntos;
+            return "¡Te pasaste! Has perdido. Puntos: " + puntos;
         }
 
-        return "Tus cartas: " + jugador;
+        return "Carta añadida. Total: " + suma;
     }
 
     public String plantarse() {
@@ -64,44 +78,41 @@ public class Juego {
         }
         if (sumaCrupier > 21) {
             puntos += 50;
-            return "Crupier: " + crupier + " - ¡El crupier se pasó! ¡Ganaste! Puntos: " + puntos;
+            return "¡El crupier se pasó! ¡Ganaste! Puntos: " + puntos;
         }
         if (sumaJugador > sumaCrupier) {
             puntos += 50;
-            return "¡Ganaste! Crupier: " + crupier + " Puntos: " + puntos;
+            return "¡Ganaste! Puntos: " + puntos;
         }
         if (sumaJugador < sumaCrupier) {
             puntos -= 25;
-            return "Crupier: " + crupier + " - Gana el crupier. Puntos: " + puntos;
+            return "Gana el crupier. Puntos: " + puntos;
         }
 
-        return "Crupier: " + crupier + " - ¡Empate! Puntos: " + puntos;
+        return "¡Empate! Puntos: " + puntos;
     }
 
     public String nuevaPartida() {
         jugador.clear();
         crupier.clear();
         jugadorPlantado = false;
-        jugador.add(cartaAleatoria());
-        jugador.add(cartaAleatoria());
-        crupier.add(cartaAleatoria());
-        crupier.add(cartaAleatoria());
-        return "Nueva partida. Tus cartas: " + jugador;
+        repartirCartasIniciales();
+        return "Nueva partida.";
     }
 
-    private int suma(ArrayList<Integer> mano) {
+    private int suma(List<Carta> mano) {
         int suma = 0;
-        for (int carta : mano) suma += carta;
+        for (Carta carta : mano) {
+            suma += carta.getValor();
+        }
         return suma;
     }
 
-
-
-    public List<Integer> getJugador() {
+    public List<Carta> getJugador() {
         return new ArrayList<>(jugador);
     }
 
-    public List<Integer> getCrupier() {
+    public List<Carta> getCrupier() {
         return new ArrayList<>(crupier);
     }
 

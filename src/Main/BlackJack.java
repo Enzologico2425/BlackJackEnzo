@@ -2,6 +2,7 @@ package Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class BlackJack extends JFrame {
     private JTextArea textoJuego;
@@ -23,7 +24,7 @@ public class BlackJack extends JFrame {
         fondo.setBackground(new Color(0, 100, 0)); // verde oscuro
         add(fondo, BorderLayout.CENTER);
 
-        // Texto superior (más pequeño)
+        // Texto superior
         textoJuego = new JTextArea("Bienvenido al Blackjack");
         textoJuego.setEditable(false);
         textoJuego.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -36,35 +37,12 @@ public class BlackJack extends JFrame {
         panelCartasJugador = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelCartasJugador.setOpaque(false);
 
-        // Panel de cartas del crupier (arriba a la derecha)
-        panelCartasCrupier = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panelCartasCrupier.setOpaque(false);
-
-        // Etiqueta de puntos del crupier (más pequeña)
-        puntosCrupierLabel = new JLabel("Crupier: 0 pts");
-        puntosCrupierLabel.setForeground(Color.WHITE);
-        puntosCrupierLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-
-        // Panel superior derecho para crupier
-        JPanel panelSuperior = new JPanel(new BorderLayout());
-        panelSuperior.setOpaque(false);
-        panelSuperior.add(puntosCrupierLabel, BorderLayout.NORTH);
-        panelSuperior.add(panelCartasCrupier, BorderLayout.CENTER);
-
-        fondo.add(panelSuperior, BorderLayout.EAST); // Posición superior derecha
-
-        // Panel central para cartas del jugador
-        fondo.add(panelCartasJugador, BorderLayout.CENTER);
-
-
-
-        // Etiqueta de puntos del jugador (al lado de botón)
+        // Panel de botones
         puntosJugadorLabel = new JLabel("Jugador: 0 pts");
         puntosJugadorLabel.setForeground(Color.BLACK);
         puntosJugadorLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         puntosJugadorLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
-        // Botones
         pedirCartaBtn = new JButton("Pedir carta");
         plantarseBtn = new JButton("Plantarse");
         jugarDeNuevoBtn = new JButton("Jugar de nuevo");
@@ -75,55 +53,64 @@ public class BlackJack extends JFrame {
         botones.add(plantarseBtn);
         botones.add(jugarDeNuevoBtn);
 
-        fondo.add(botones, BorderLayout.SOUTH);
+        // Panel inferior que contiene cartas del jugador + botones
+        JPanel panelInferior = new JPanel(new BorderLayout());
+        panelInferior.setOpaque(false);
+        panelInferior.add(panelCartasJugador, BorderLayout.CENTER);
+        panelInferior.add(botones, BorderLayout.SOUTH);
 
+        fondo.add(panelInferior, BorderLayout.SOUTH);
+
+        // Panel de cartas del crupier
+        panelCartasCrupier = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelCartasCrupier.setOpaque(false);
+
+        puntosCrupierLabel = new JLabel("Crupier: 0 pts");
+        puntosCrupierLabel.setForeground(Color.WHITE);
+        puntosCrupierLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setOpaque(false);
+        panelSuperior.add(puntosCrupierLabel, BorderLayout.NORTH);
+        panelSuperior.add(panelCartasCrupier, BorderLayout.CENTER);
+
+        fondo.add(panelSuperior, BorderLayout.EAST);
     }
-    public void mostrarCartasCrupier(java.util.List<Integer> cartasCrupier) {
-        panelCartasCrupier.removeAll();
 
-        //  formato [ 10, 5, 6 ]
-        String textoCartas = cartasCrupier.toString()
-                .replace("[", "[ ")
-                .replace("]", " ]");
-
-        JLabel cartaLabel = new JLabel(textoCartas);
-        cartaLabel.setForeground(Color.WHITE);
-        cartaLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        panelCartasCrupier.add(cartaLabel);
-
-        actualizar();
-    }
-    public void mostrarCartasJugador(java.util.List<Integer> cartasJugador) {
-        panelCartasJugador.removeAll(); // Limpiar panel
-        for (Integer carta : cartasJugador) {
-            JLabel cartaLabel = new JLabel(carta.toString());
-            cartaLabel.setForeground(Color.WHITE);
-            cartaLabel.setFont(new Font("Arial", Font.BOLD, 0));
+    public void mostrarCartasJugador(List<Carta> cartasJugador) {
+        panelCartasJugador.removeAll();
+        for (Carta carta : cartasJugador) {
+            JLabel cartaLabel = new JLabel(carta.getImagen());
             panelCartasJugador.add(cartaLabel);
         }
         actualizar();
     }
 
+    public void mostrarCartasCrupier(List<Carta> cartasCrupier) {
+        panelCartasCrupier.removeAll();
+        for (int i = 0; i < cartasCrupier.size(); i++) {
+            JLabel cartaLabel;
+            if (i == 0) {
+                // Mostrar carta boca abajo (reverso)
+                ImageIcon backIcon = new ImageIcon(getClass().getResource("/Resources/backCard.png"));
+                Image img = backIcon.getImage().getScaledInstance(90, 130, Image.SCALE_SMOOTH);
+                backIcon = new ImageIcon(img);
+                cartaLabel = new JLabel(backIcon);
+            } else {
+                // Mostrar carta normalmente
+                cartaLabel = new JLabel(cartasCrupier.get(i).getImagen());
+            }
+            panelCartasCrupier.add(cartaLabel);
+        }
+        actualizar();
+    }
+
     // Getters
-    public JButton getPedirCartaBtn() {
-        return pedirCartaBtn;
-    }
-
-    public JButton getPlantarseBtn() {
-        return plantarseBtn;
-    }
-
-    public JButton getJugarDeNuevoBtn() {
-        return jugarDeNuevoBtn;
-    }
-
-    public JPanel getPanelCartasJugador() {
-        return panelCartasJugador;
-    }
-
-    public JPanel getPanelCartasCrupier() {
-        return panelCartasCrupier;
-    }
+    public JButton getPedirCartaBtn() { return pedirCartaBtn; }
+    public JButton getPlantarseBtn() { return plantarseBtn; }
+    public JButton getJugarDeNuevoBtn() { return jugarDeNuevoBtn; }
+    public JPanel getPanelCartasJugador() { return panelCartasJugador; }
+    public JPanel getPanelCartasCrupier() { return panelCartasCrupier; }
 
     public void setTextoJuego(String texto) {
         textoJuego.setText(texto);
