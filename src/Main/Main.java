@@ -8,37 +8,37 @@ public class Main {
 
             Juego juego = new Juego();
 
-            // Nueva partida inicial
-            String texto = juego.nuevaPartida();
-            gui.setTextoJuego(texto);
+            // Mostrar estado inicial
+            gui.setTextoJuego("¡Bienvenido al Blackjack!");
             gui.mostrarCartasJugador(juego.getJugador());
-            gui.mostrarCartasCrupier(juego.getCrupier());
-            gui.setPuntosJugador(juego.getPuntos()); // Mostrar puntos iniciales
+            gui.mostrarCartasCrupier(juego.getCrupier(), juego.isMostrarCartaOcultaCrupier());
+            gui.setPuntosJugador(juego.getPuntos());
 
-            // Pedir carta
+            // Acción botón "Pedir carta"
             gui.getPedirCartaBtn().addActionListener(e -> {
                 String resultado = juego.pedirCartaJugador();
                 gui.setTextoJuego(resultado);
                 gui.mostrarCartasJugador(juego.getJugador());
-                gui.setPuntosJugador(juego.getPuntos()); // Actualizar puntos
+                gui.mostrarCartasCrupier(juego.getCrupier(), juego.isMostrarCartaOcultaCrupier());
+                gui.setPuntosJugador(juego.getPuntos());
             });
 
-            // Plantarse
+            // Acción botón "Plantarse"
             gui.getPlantarseBtn().addActionListener(e -> {
                 String resultado = juego.plantarse();
                 gui.setTextoJuego(resultado);
                 gui.mostrarCartasJugador(juego.getJugador());
-                gui.mostrarCartasCrupier(juego.getCrupier());
-                gui.setPuntosJugador(juego.getPuntos()); // Actualizar puntos
+                gui.mostrarCartasCrupier(juego.getCrupier(), juego.isMostrarCartaOcultaCrupier());
+                gui.setPuntosJugador(juego.getPuntos());
             });
 
-            // Jugar de nuevo
+            // Acción botón "Jugar de nuevo"
             gui.getJugarDeNuevoBtn().addActionListener(e -> {
-                String resultado = juego.nuevaPartida();
-                gui.setTextoJuego(resultado);
+                juego.nuevaPartida();
+                gui.setTextoJuego("¡Nueva partida! Buena suerte.");
                 gui.mostrarCartasJugador(juego.getJugador());
-                gui.mostrarCartasCrupier(juego.getCrupier());
-                gui.setPuntosJugador(juego.getPuntos()); // Reiniciar puntos
+                gui.mostrarCartasCrupier(juego.getCrupier(), juego.isMostrarCartaOcultaCrupier());
+                gui.setPuntosJugador(juego.getPuntos());
             });
         });
     }

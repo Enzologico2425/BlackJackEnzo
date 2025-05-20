@@ -10,6 +10,7 @@ public class Juego {
     private final List<Carta> crupier;
     private boolean jugadorPlantado;
     private int puntos;
+    private boolean mostrarCartaOcultaCrupier; // Nueva variable
 
     private static final String[] PALOS = {"H", "D", "C", "S"};
     private static final String[] NOMBRES = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
@@ -20,6 +21,7 @@ public class Juego {
         crupier = new ArrayList<>();
         jugadorPlantado = false;
         puntos = 0;
+        mostrarCartaOcultaCrupier = false; // Inicializamos
         crearMazo();
         repartirCartasIniciales();
     }
@@ -52,12 +54,14 @@ public class Juego {
 
         if (suma == 21) {
             jugadorPlantado = true;
+            mostrarCartaOcultaCrupier = true;  // Revelar carta crupier si se hace blackjack
             puntos += 50;
             return "BLACKJACK! ¡Ganaste! Puntos: " + puntos;
         }
 
         if (suma > 21) {
             jugadorPlantado = true;
+            mostrarCartaOcultaCrupier = true; // Revelar carta crupier si se pasa
             puntos -= 25;
             return "¡Te pasaste! Has perdido. Puntos: " + puntos;
         }
@@ -67,6 +71,8 @@ public class Juego {
 
     public String plantarse() {
         jugadorPlantado = true;
+        revelarCartaCrupier();  // Revelar carta oculta cuando el jugador se planta
+
         while (suma(crupier) < 16) crupier.add(cartaAleatoria());
 
         int sumaJugador = suma(jugador);
@@ -96,6 +102,7 @@ public class Juego {
         jugador.clear();
         crupier.clear();
         jugadorPlantado = false;
+        mostrarCartaOcultaCrupier = false; // Resetear para nueva partida
         repartirCartasIniciales();
         return "Nueva partida.";
     }
@@ -118,5 +125,17 @@ public class Juego {
 
     public int getPuntos() {
         return puntos;
+    }
+
+    public boolean estaPlantado() {
+        return jugadorPlantado;
+    }
+
+    public void revelarCartaCrupier() {
+        mostrarCartaOcultaCrupier = true;
+    }
+
+    public boolean isMostrarCartaOcultaCrupier() {
+        return mostrarCartaOcultaCrupier;
     }
 }

@@ -15,16 +15,12 @@ public class BlackJack extends JFrame {
         setSize(900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
-        // Centrar la ventana
         setLocationRelativeTo(null);
 
-        // Panel central con fondo verde
         JPanel fondo = new JPanel(new BorderLayout());
-        fondo.setBackground(new Color(0, 100, 0)); // verde oscuro
+        fondo.setBackground(new Color(0, 100, 0)); // fondo color correcto
         add(fondo, BorderLayout.CENTER);
 
-        // Texto superior
         textoJuego = new JTextArea("Bienvenido al Blackjack");
         textoJuego.setEditable(false);
         textoJuego.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -33,11 +29,9 @@ public class BlackJack extends JFrame {
         textoJuego.setMargin(new Insets(10, 10, 10, 10));
         fondo.add(textoJuego, BorderLayout.NORTH);
 
-        // Panel de cartas del jugador
         panelCartasJugador = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelCartasJugador.setOpaque(false);
 
-        // Panel de botones
         puntosJugadorLabel = new JLabel("Jugador: 0 pts");
         puntosJugadorLabel.setForeground(Color.BLACK);
         puntosJugadorLabel.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -53,15 +47,12 @@ public class BlackJack extends JFrame {
         botones.add(plantarseBtn);
         botones.add(jugarDeNuevoBtn);
 
-        // Panel inferior que contiene cartas del jugador + botones
         JPanel panelInferior = new JPanel(new BorderLayout());
         panelInferior.setOpaque(false);
         panelInferior.add(panelCartasJugador, BorderLayout.CENTER);
         panelInferior.add(botones, BorderLayout.SOUTH);
-
         fondo.add(panelInferior, BorderLayout.SOUTH);
 
-        // Panel de cartas del crupier
         panelCartasCrupier = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelCartasCrupier.setOpaque(false);
 
@@ -73,7 +64,6 @@ public class BlackJack extends JFrame {
         panelSuperior.setOpaque(false);
         panelSuperior.add(puntosCrupierLabel, BorderLayout.NORTH);
         panelSuperior.add(panelCartasCrupier, BorderLayout.CENTER);
-
         fondo.add(panelSuperior, BorderLayout.EAST);
     }
 
@@ -86,18 +76,16 @@ public class BlackJack extends JFrame {
         actualizar();
     }
 
-    public void mostrarCartasCrupier(List<Carta> cartasCrupier) {
+    public void mostrarCartasCrupier(List<Carta> cartasCrupier, boolean mostrarTodo) {
         panelCartasCrupier.removeAll();
         for (int i = 0; i < cartasCrupier.size(); i++) {
             JLabel cartaLabel;
-            if (i == 0) {
-                // Mostrar carta boca abajo (reverso)
+            if (i == 0 && !mostrarTodo) {
                 ImageIcon backIcon = new ImageIcon(getClass().getResource("/Resources/backCard.png"));
                 Image img = backIcon.getImage().getScaledInstance(90, 130, Image.SCALE_SMOOTH);
                 backIcon = new ImageIcon(img);
                 cartaLabel = new JLabel(backIcon);
             } else {
-                // Mostrar carta normalmente
                 cartaLabel = new JLabel(cartasCrupier.get(i).getImagen());
             }
             panelCartasCrupier.add(cartaLabel);
@@ -105,12 +93,9 @@ public class BlackJack extends JFrame {
         actualizar();
     }
 
-    // Getters
-    public JButton getPedirCartaBtn() { return pedirCartaBtn; }
-    public JButton getPlantarseBtn() { return plantarseBtn; }
-    public JButton getJugarDeNuevoBtn() { return jugarDeNuevoBtn; }
-    public JPanel getPanelCartasJugador() { return panelCartasJugador; }
-    public JPanel getPanelCartasCrupier() { return panelCartasCrupier; }
+    public void mostrarCartasCrupier(List<Carta> cartasCrupier) {
+        mostrarCartasCrupier(cartasCrupier, false);
+    }
 
     public void setTextoJuego(String texto) {
         textoJuego.setText(texto);
@@ -122,6 +107,26 @@ public class BlackJack extends JFrame {
 
     public void setPuntosCrupier(int puntos) {
         puntosCrupierLabel.setText("Crupier: " + puntos + " pts");
+    }
+
+    public JButton getPedirCartaBtn() {
+        return pedirCartaBtn;
+    }
+
+    public JButton getPlantarseBtn() {
+        return plantarseBtn;
+    }
+
+    public JButton getJugarDeNuevoBtn() {
+        return jugarDeNuevoBtn;
+    }
+
+    public JPanel getPanelCartasJugador() {
+        return panelCartasJugador;
+    }
+
+    public JPanel getPanelCartasCrupier() {
+        return panelCartasCrupier;
     }
 
     public void actualizar() {
