@@ -9,8 +9,14 @@ public class BlackJack extends JFrame {
     private JButton pedirCartaBtn, plantarseBtn, jugarDeNuevoBtn;
     private JPanel panelCartasJugador, panelCartasCrupier;
     private JLabel puntosJugadorLabel, puntosCrupierLabel;
+    private JLabel puntosTotalesLabel;  // Label para puntos totales
+
+    private Juego juego;  // Instancia de la lógica del juego
+    private int puntosTotales = 500;  // Puntos/dinero inicial
 
     public BlackJack() {
+        juego = new Juego();
+
         setTitle("Blackjack");
         setSize(900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,20 +38,31 @@ public class BlackJack extends JFrame {
         panelCartasJugador = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelCartasJugador.setOpaque(false);
 
-        puntosJugadorLabel = new JLabel("Jugador: 0 pts");
+        // Suma actual de cartas del jugador
+        puntosJugadorLabel = new JLabel("");
         puntosJugadorLabel.setForeground(Color.BLACK);
         puntosJugadorLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         puntosJugadorLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
+        // Label para puntos totales que se muestran y actualizan según partida
+        puntosTotalesLabel = new JLabel("Puntos Totales: " + puntosTotales);
+        puntosTotalesLabel.setForeground(Color.BLACK);
+        puntosTotalesLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        puntosTotalesLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+
         pedirCartaBtn = new JButton("Pedir carta");
         plantarseBtn = new JButton("Plantarse");
         jugarDeNuevoBtn = new JButton("Jugar de nuevo");
+        jugarDeNuevoBtn.setEnabled(false);
+
+        JButton retirarPuntosBtn = new JButton("Retirar puntos");
 
         JPanel botones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        botones.add(puntosJugadorLabel);
+        botones.add(puntosJugadorLabel);  // Suma actual cartas jugador
         botones.add(pedirCartaBtn);
         botones.add(plantarseBtn);
-        botones.add(jugarDeNuevoBtn);
+        botones.add(retirarPuntosBtn);
+        botones.add(puntosTotalesLabel);  // Label para puntos totales
 
         JPanel panelInferior = new JPanel(new BorderLayout());
         panelInferior.setOpaque(false);
@@ -56,7 +73,7 @@ public class BlackJack extends JFrame {
         panelCartasCrupier = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelCartasCrupier.setOpaque(false);
 
-        puntosCrupierLabel = new JLabel("Crupier: 0 pts");
+        puntosCrupierLabel = new JLabel("");
         puntosCrupierLabel.setForeground(Color.WHITE);
         puntosCrupierLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
@@ -65,6 +82,85 @@ public class BlackJack extends JFrame {
         panelSuperior.add(puntosCrupierLabel, BorderLayout.NORTH);
         panelSuperior.add(panelCartasCrupier, BorderLayout.CENTER);
         fondo.add(panelSuperior, BorderLayout.EAST);
+
+        // Mostrar el estado inicial
+        actualizarInterfaz();
+
+        // Añadimos los listeners
+        pedirCartaBtn.addActionListener(e -> {
+            String resultado = juego.pedirCartaJugador();
+            textoJuego.setText(resultado);
+
+            actualizarInterfaz();
+
+            if (finDePartidaDetectada(resultado)) {
+                finDelJuego(resultado.toLowerCase().contains("ganaste"));
+            }
+        });
+
+        plantarseBtn.addActionListener(e -> {
+            String resultado = juego.plantarse();
+            textoJuego.setText(resultado);
+
+            actualizarInterfaz();
+
+            if (finDePartidaDetectada(resultado)) {
+                finDelJuego(resultado.toLowerCase().contains("ganaste"));
+            }
+        });
+
+        jugarDeNuevoBtn.addActionListener(e -> {
+            juego.nuevaPartida();
+            pedirCartaBtn.setEnabled(true);
+            plantarseBtn.setEnabled(true);
+            jugarDeNuevoBtn.setEnabled(false);
+            textoJuego.setText("Nueva partida. ¡Suerte!");
+            actualizarInterfaz();
+        });
+    }
+
+    private void actualizarInterfaz() {
+        mostrarCartasJugador(juego.getJugador());
+        mostrarCartasCrupier(juego.getCrupier(), juego.isMostrarCartaOcultaCrupier());
+        setPuntosJugador(suma(juego.getJugador())); // Suma actual cartas jugador
+        setPuntosCrupier(juego.isMostrarCartaOcultaCrupier() ? suma(juego.getCrupier()) : 0);
+        setPuntosTotales(puntosTotales); // Actualiza el label de puntos totales
+    }
+
+    private boolean finDePartidaDetectada(String mensaje) {
+        String minus = mensaje.toLowerCase();
+        return minus.contains("ganaste") || minus.contains("perdiste") || minus.contains("pasaste") ||
+                minus.contains("blackjack") || minus.contains("empate") || minus.contains("gana el crupier");
+    }
+
+    private void finDelJuego(boolean victoria) {
+        pedirCartaBtn.setEnabled(false);
+        plantarseBtn.setEnabled(false);
+        jugarDeNuevoBtn.setEnabled(true);
+
+        if (victoria) {
+            puntosTotales += 25;
+        } else {
+            puntosTotales -= 25;
+        }
+        setPuntosTotales(puntosTotales);
+
+        int opcion = JOptionPane.showConfirmDialog(this,
+                victoria ? "¡Ganaste con " + suma(juego.getJugador()) + " puntos! ¿Jugar otra vez?"
+                        : "¡Has perdido! ¿Jugar de nuevo?",
+                "Fin del juego",
+                JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            juego.nuevaPartida();
+            pedirCartaBtn.setEnabled(true);
+            plantarseBtn.setEnabled(true);
+            jugarDeNuevoBtn.setEnabled(false);
+            textoJuego.setText("Nueva partida. ¡Suerte!");
+            actualizarInterfaz();
+        } else {
+            System.exit(0);
+        }
     }
 
     public void mostrarCartasJugador(List<Carta> cartasJugador) {
@@ -93,10 +189,6 @@ public class BlackJack extends JFrame {
         actualizar();
     }
 
-    public void mostrarCartasCrupier(List<Carta> cartasCrupier) {
-        mostrarCartasCrupier(cartasCrupier, false);
-    }
-
     public void setTextoJuego(String texto) {
         textoJuego.setText(texto);
     }
@@ -107,6 +199,11 @@ public class BlackJack extends JFrame {
 
     public void setPuntosCrupier(int puntos) {
         puntosCrupierLabel.setText("Crupier: " + puntos + " pts");
+    }
+
+    public void setPuntosTotales(int puntos) {
+        puntosTotales = puntos;
+        puntosTotalesLabel.setText("Puntos Totales: " + puntosTotales);
     }
 
     public JButton getPedirCartaBtn() {
@@ -132,5 +229,13 @@ public class BlackJack extends JFrame {
     public void actualizar() {
         repaint();
         revalidate();
+    }
+
+    private int suma(List<Carta> mano) {
+        int suma = 0;
+        for (Carta carta : mano) {
+            suma += carta.getValor();
+        }
+        return suma;
     }
 }
