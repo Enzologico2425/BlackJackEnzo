@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51469515-66a0-4a72-b3e5-104d1ad04115" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Resources/Fondo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql-connector-j-9.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/SQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/VentanaNombreJugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackEnzo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackEnzo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/BlackJack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/BlackJack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,24 +56,29 @@
   "keyToString": {
     "Application.BlackjackGUI.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.SQL.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/CEP-MATI/IdeaProjects/BlackJackEnzo",
+    "last_opened_file_path": "C:/Users/CEP-MATI/IdeaProjects/BlackJackEnzo/mysql-connector-j-9.3.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/CEP-MATI/IdeaProjects/BlackJackEnzo/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\CEP-MATI\IdeaProjects\BlackJackEnzo" />
       <recent name="C:\Users\CEP-MATI\IdeaProjects\BlackJackEnzo\src\Resources" />
       <recent name="C:\Users\CEP-MATI\IdeaProjects\BlackJackEnzo\src\Main" />
     </key>
@@ -94,7 +103,8 @@
       <workItem from="1747636997073" duration="3408000" />
       <workItem from="1747640524252" duration="12740000" />
       <workItem from="1747723726780" duration="2495000" />
-      <workItem from="1747726290316" duration="13237000" />
+      <workItem from="1747726290316" duration="14097000" />
+      <workItem from="1747809713058" duration="8807000" />
     </task>
     <servers />
   </component>

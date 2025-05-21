@@ -138,4 +138,5 @@ public class Juego {
     public boolean isMostrarCartaOcultaCrupier() {
         return mostrarCartaOcultaCrupier;
     }
+
 }
