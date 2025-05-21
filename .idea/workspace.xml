@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51469515-66a0-4a72-b3e5-104d1ad04115" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mysql-connector-j-9.3.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/SQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/VentanaNombreJugador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/lgodragon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackEnzo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackEnzo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/BlackJack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/VentanaNombreJugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BlackJackEnzo/Main/VentanaNombreJugador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/BlackJack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/BlackJack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Juego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/SQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/VentanaNombreJugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/VentanaNombreJugador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
       <workItem from="1747640524252" duration="12740000" />
       <workItem from="1747723726780" duration="2495000" />
       <workItem from="1747726290316" duration="14097000" />
-      <workItem from="1747809713058" duration="8807000" />
+      <workItem from="1747809713058" duration="12456000" />
     </task>
     <servers />
   </component>

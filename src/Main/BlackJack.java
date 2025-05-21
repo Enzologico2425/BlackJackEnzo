@@ -19,6 +19,12 @@ public class BlackJack extends JFrame {
     public BlackJack() {
         juego = new Juego();
 
+        // aqui tambien pongo mi logo
+        Image icono = new ImageIcon(getClass().getResource("/resources/lgodragon.png")).getImage();
+        setIconImage(icono);
+
+        setVisible(true);
+
         setTitle("Blackjack");
         setSize(900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -84,6 +90,7 @@ public class BlackJack extends JFrame {
 
         actualizarInterfaz();
 
+        // eventos de los botones
         pedirCartaBtn.addActionListener(e -> {
             String resultado = juego.pedirCartaJugador();
             textoJuego.setText(resultado);

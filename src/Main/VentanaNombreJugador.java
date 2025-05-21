@@ -1,6 +1,7 @@
 package Main;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class VentanaNombreJugador extends JFrame {
     private JTextField campoNombre;
@@ -8,6 +9,13 @@ public class VentanaNombreJugador extends JFrame {
     private String nombreJugador;
 
     public VentanaNombreJugador() {
+
+        //pongo mi logo de diseño en vez del de la aplicacion
+        Image icono = new ImageIcon(getClass().getResource("/resources/lgodragon.png")).getImage();
+        setIconImage(icono);
+
+        setVisible(true);
+
         setTitle("Introducir nombre del jugador");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

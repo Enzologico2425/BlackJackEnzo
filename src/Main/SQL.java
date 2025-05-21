@@ -11,12 +11,12 @@ public class SQL {
     private static final String USER = "enzo2";
     private static final String PASSWORD = "enzo2";
 
-    // Método para obtener conexión
+    // como conectar el sql al proyecto
     public static Connection conectar() throws Exception {
         return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
 
-    // Método para insertar jugador (si ya existe da error, lo ignoramos)
+    // el metodo para insertar al jugador si ya hay uno con el mismo nombre salta mensaje y lo ignoramos
     public static void insertarJugador(String nombre) {
         String sql = "INSERT INTO usuarios (nombre) VALUES (?)";
         try (Connection con = conectar();
@@ -33,7 +33,7 @@ public class SQL {
         }
     }
 
-    // Método para guardar puntuación asociado al nombre de jugador
+    // metodo donde guardamos la puntuacion en relacion al nombre del usuario
     public static void guardarPuntuacion(String nombre, int puntos) {
         String sqlUsuario = "SELECT id FROM usuarios WHERE nombre = ?";
         String sqlInsertarPuntos = "INSERT INTO puntuaciones (usuario_id, puntos) VALUES (?, ?)";
